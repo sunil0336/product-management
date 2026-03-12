@@ -6,12 +6,15 @@ import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import CategoryFilter from "../components/CategoryFilter";
 import { toast } from "react-hot-toast";
+import useDebounce from "../hooks/useDebounce";
+import ProductSkeleton from "../components/ProductSkeleton";
 
 export default function Dashboard() {
     const { products, loading, error, addProduct, deleteProduct, updateProduct } =
         useProducts();
 
     const [search, setSearch] = useState("");
+    const debouncedSearch = useDebounce(search, 400);
     const [editProduct, setEditProduct] = useState(null);
     const [page, setPage] = useState(1);
     const [category, setCategory] = useState("All");
@@ -20,7 +23,7 @@ export default function Dashboard() {
 
     const filtered = products
         .filter((p) =>
-            p.title.toLowerCase().includes(search.toLowerCase())
+            p.title.toLowerCase().includes(debouncedSearch.toLowerCase())
         )
         .filter((p) =>
             category === "All" ? true : p.category === category
@@ -30,21 +33,21 @@ export default function Dashboard() {
     const paginated = filtered.slice(start, start + perPage);
 
     const handleSubmit = (product) => {
-  const newProduct = {
-    ...product,
-    id: editProduct ? product.id : Date.now(),
-    stock: product.stock || "In Stock",
-  };
+        const newProduct = {
+            ...product,
+            id: editProduct ? product.id : Date.now(),
+            stock: product.stock || "In Stock",
+        };
 
-  if (editProduct) {
-    updateProduct(newProduct);
-    toast.success("Product updated");
-    setEditProduct(null);
-  } else {
-    addProduct(newProduct);
-    toast.success("Product added");
-  }
-};
+        if (editProduct) {
+            updateProduct(newProduct);
+            toast.success("Product updated");
+            setEditProduct(null);
+        } else {
+            addProduct(newProduct);
+            toast.success("Product added");
+        }
+    };
 
     useEffect(() => {
         const totalPages = Math.ceil(filtered.length / perPage);
@@ -69,10 +72,20 @@ export default function Dashboard() {
         }
     };
 
-    if (loading)
+    if (loading) {
         return (
-            <div className="flex justify-center mt-20 text-xl">Loading...</div>
+            <div className="max-w-6xl mx-auto p-6">
+                <h1 className="text-3xl font-bold mb-6 -ml-4 text-center">
+                    Product Management Dashboard
+                </h1>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                        <ProductSkeleton key={i} />
+                    ))}
+                </div>
+            </div>
         );
+    }
 
     if (error)
         return (
