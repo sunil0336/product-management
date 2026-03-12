@@ -1,16 +1,154 @@
-# React + Vite
+# Product Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+The **Product Management Dashboard** is a React-based web application that allows users to manage products efficiently.
+The dashboard provides features to **view, add, edit, delete, search, and filter products** in a clean and responsive interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project demonstrates practical frontend development using **React functional components, hooks, API integration, and modern UI design**.
 
-## React Compiler
+---
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## Live Demo
 
-## Expanding the ESLint configuration
+You can view the live application here:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Live URL:**
+https://your-project-name.vercel.app
+
+---
+
+## Technologies Used
+
+* React.js
+* Vite
+* JavaScript (ES6+)
+* Tailwind CSS
+* Axios / Fetch API
+* React Hooks (useState, useEffect)
+* React Hot Toast
+
+---
+
+## Features Implemented
+
+### Core Features
+
+* Display product list from API
+* Add new product
+* Edit existing product
+* Delete product
+* Product search functionality
+* Category filtering
+* Pagination (10 products per page)
+* Stock status display
+* Loading state handling
+* Error handling
+
+### UI & UX Enhancements
+
+* Responsive layout using Tailwind CSS
+* Skeleton loaders while fetching products
+* Toast notifications for user actions
+* Confirmation before deleting products
+
+### Optional Enhancements Implemented
+
+* Debounced search for better performance
+* Custom React hooks for state management
+* Optimistic UI updates
+* Reusable component structure
+
+---
+
+## Folder Structure
+
+```
+src
+├── components
+│   ├── ProductCard.jsx
+│   ├── ProductForm.jsx
+│   ├── SearchBar.jsx
+│   ├── Pagination.jsx
+│   └── ProductSkeleton.jsx
+│
+├── pages
+│   └── Dashboard.jsx
+│
+├── hooks
+│   ├── useProducts.js
+│   └── useDebounce.js
+│
+├── services
+│   └── api.js
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## Setup Instructions
+
+### 1. Clone the repository
+
+```
+git clone https://github.com/your-username/product-dashboard.git
+```
+
+### 2. Navigate to project directory
+
+```
+cd product-dashboard
+```
+
+### 3. Install dependencies
+
+```
+npm install
+```
+
+### 4. Run development server
+
+```
+npm run dev
+```
+
+The application will start on:
+
+```
+http://localhost:5173
+```
+
+---
+
+## API Used
+
+Product data is fetched from the public API:
+
+```
+https://fakestoreapi.com/products
+```
+
+---
+
+## Screenshots
+
+### Dashboard
+
+(Add screenshot here)
+
+### Add Product Form
+
+(Add screenshot here)
+
+### Search & Filter
+
+(Add screenshot here)
+
+---
+
+## Author
+
+Sunil Rathod
+MSc Computer Science – Fergusson College Pune

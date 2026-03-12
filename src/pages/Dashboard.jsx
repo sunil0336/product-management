@@ -56,20 +56,32 @@ export default function Dashboard() {
         }
     }, [filtered]);
 
-    const handleDelete = (id) => {
-        if (confirm("Are you sure you want to delete this product?")) {
+    const handleDelete = async (id) => {
 
-            const updatedProducts = products.filter((p) => p.id !== id);
+        if (!confirm("Are you sure you want to delete this product?")) return;
 
-            deleteProduct(id);
+        // store previous products
+        const previousProducts = [...products];
+
+        // optimistic update (remove immediately)
+        deleteProduct(id);
+
+        try {
+
+            // simulate API call delay
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
             toast.success("Product deleted");
 
-            const totalPages = Math.ceil(updatedProducts.length / perPage);
+        } catch (error) {
 
-            if (page > totalPages) {
-                setPage(totalPages || 1);
-            }
+            // rollback if API fails
+            setProducts(previousProducts);
+
+            toast.error("Delete failed");
+
         }
+
     };
 
     if (loading) {
