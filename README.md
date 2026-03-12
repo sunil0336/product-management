@@ -14,7 +14,7 @@ This project demonstrates practical frontend development using **React functiona
 You can view the live application here:
 
 **Live URL:**
-https://your-project-name.vercel.app
+https://product-management-sage-five.vercel.app/
 
 ---
 
