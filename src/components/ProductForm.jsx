@@ -7,7 +7,8 @@ export default function ProductForm({ onSubmit, editProduct }) {
         price: "",
         category: "",
         description: "",
-        stock: "In Stock",
+        image: "",
+        stock: "In Stock"
     });
 
     useEffect(() => {
@@ -40,6 +41,7 @@ export default function ProductForm({ onSubmit, editProduct }) {
             title: "",
             price: "",
             category: "",
+            image: "",
             description: "",
             stock: "In Stock",
         });
@@ -94,6 +96,14 @@ export default function ProductForm({ onSubmit, editProduct }) {
                 name="description"
                 placeholder="Description"
                 value={form.description}
+                onChange={handleChange}
+                className="border p-2 rounded md:col-span-2"
+            />
+            <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={form.image}
                 onChange={handleChange}
                 className="border p-2 rounded md:col-span-2"
             />
